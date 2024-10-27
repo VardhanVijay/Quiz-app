@@ -54,8 +54,8 @@ function updateTimer() {
 function generateQuestion() {
     let ansVal = "";
     if (currQuesIndex >= questions.length) {
-        afterOver();
         clearInterval(timerInterval);
+        afterOver();
         return;
     }
     // updateTimer();
@@ -95,9 +95,9 @@ function generateQuestion() {
     quesContainer.append(newQuestion, options);
     checkCorrectAnswer(btns, ansVal, newQuestion);
 
-    if(quesOptionAnswer[currQuesIndex]===false){
+   if(quesOptionAnswer[currQuesIndex]===false){
         quesOptionAnswer[currQuesIndex]={newQuestion,ansVal};
-    }
+   }
     foot();
     currQuesIndex++;
 };
@@ -125,7 +125,7 @@ function checkCorrectAnswer(btns, ansVal, newQuestion) {
             ansVal.classList.add('correct');
             currTimer = 3;
             clicked = true;
-            quesOptionAnswer[currQuesIndex]={ ansVal, newQuestion, optionChoose };
+            quesOptionAnswer[currQuesIndex-1]={ansVal, newQuestion, optionChoose };
         })
     })
 
@@ -158,13 +158,13 @@ function afterOver() {
             if(ele.ansVal===ele.optionChoose) correctques++;
         } 
         else {
-            // ele.ansVal.classList.add('correct');
             showAnswer.append(ele.newQuestion, ele.optionChoose, ele.ansVal);
         }
         
     })
     showAnswer.append(`${correctques} out of ${questions.length} Correct`);
 }
+
 
 
 
