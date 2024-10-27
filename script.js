@@ -153,10 +153,9 @@ function afterOver() {
     showAnswer.style.visibility = 'visible';
     quesOptionAnswer.forEach(ele => {
         if(!ele.optionChoose || ele.ansVal===ele.optionChoose) {
-
-            if(ele.ansVal===ele.optionChoose) correctques++;
             ele.ansVal.classList.add('correct');
             showAnswer.append(ele.newQuestion,ele.ansVal);
+            if(ele.ansVal===ele.optionChoose) correctques++;
         } 
         else {
             // ele.ansVal.classList.add('correct');
